@@ -10,6 +10,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { CategoryPipe } from '../../shared/pipes/category.pipe';
 
 @Component({
   selector: 'app-courses',
@@ -20,7 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
             MatToolbarModule,
             MatProgressSpinnerModule,
             MatButtonModule,
-            MatDialogModule
+            MatDialogModule,
+            CategoryPipe
           ],
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
@@ -32,17 +34,22 @@ export class CoursesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'category'];
   //courseService: CoursesService;
 
-  constructor(
+constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog
-) {
+){
     this.courses$ = this.coursesService.list();
-      .pipe (
+      .pipe(
       catchError(error => {
         this.onError('Erro ao carregar a lista de cursos');
         return of ([])
       })
     );
+  }
+  onError ( erroMsg: string){
+    this.dialog.open(ErrorDialogComponent, {
+      data: erroMsg,
+    })
   }
   ngOnInit(): void {
     //this.courses = this.coursesService.list();
