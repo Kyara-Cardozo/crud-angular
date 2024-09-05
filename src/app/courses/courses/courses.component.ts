@@ -4,54 +4,53 @@ import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { Observable,  of, catchError} from 'rxjs';
+import { Observable, of, catchError } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { ErrorDialogComponent } from '../shared/components/error-dialog/error-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CategoryPipe } from '../../shared/pipes/category.pipe';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule,
-            MatTableModule,
-            MatCardModule,
-            MatToolbarModule,
-            MatProgressSpinnerModule,
-            MatButtonModule,
-            MatDialogModule,
-            CategoryPipe
-          ],
+  imports: [
+    CommonModule,
+    MatTableModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatDialogModule,
+    CategoryPipe
+  ],
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
 
-  //courses: Course[] = [{ _id: "1", name: "Curso Angular", category: "Front-end" }];
-  courses: Observable<Course[]>;
+  courses$: Observable<Course[]>;
   displayedColumns: string[] = ['name', 'category'];
-  //courseService: CoursesService;
 
-constructor(
+  constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog
-){
-    this.courses$ = this.coursesService.list();
+  ) {
+    this.courses$ = this.coursesService.list()
       .pipe(
-      catchError(error => {
-        this.onError('Erro ao carregar a lista de cursos');
-        return of ([])
-      })
-    );
+        catchError(error => {
+          this.onError('Erro ao carregar a lista de cursos');
+          return of([]);
+        })
+      );
   }
-  onError ( erroMsg: string){
+
+  onError(erroMsg: string): void {
     this.dialog.open(ErrorDialogComponent, {
       data: erroMsg,
-    })
+    });
   }
-  ngOnInit(): void {
-    //this.courses = this.coursesService.list();
-  }
+
+  ngOnInit(): void {}
 }
