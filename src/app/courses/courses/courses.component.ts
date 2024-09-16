@@ -38,7 +38,7 @@ export class CoursesComponent implements OnInit {
   displayedColumns: string[] = ['name', 'category', 'actions'];
 
   constructor(
-    private coursesService: CoursesService, // Correto, sem necessidade de `courseService`
+    private coursesService: CoursesService,
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute

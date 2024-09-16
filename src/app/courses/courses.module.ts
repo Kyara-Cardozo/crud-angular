@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import { Course } from './model/course';
 import { MatIconModule } from '@angular/material/icon';
 import { CategoryPipe } from '../shared/pipes/category.pipe';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { CategoryPipe } from '../shared/pipes/category.pipe';
     CommonModule,
     CoursesRoutingModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ]
 })
 export class CoursesModule { }
@@ -27,23 +30,8 @@ export class CoursesModule { }
 // O componente standalone fora do módulo
 
 
-@Component({
-  selector: 'app-courses-alt',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatCardModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    CommonModule,
-    MatIconModule,
-    CategoryPipe
-  ],
-  templateUrl: './courses/courses.component.html',
-  styleUrls: ['./courses/courses.component.scss']
-})
-export class CoursesComponent implements OnInit {
 
+<<<<<<< HEAD
   courses$: Observable<Course[]>; // Usando um Observable para a lista de cursos
 
   displayedColumns: string[] = ['name', 'category', 'actions'];
@@ -58,3 +46,5 @@ export class CoursesComponent implements OnInit {
     // Poderia ser usado para manipulações extras após a injeção de dependência
   }
 }
+=======
+>>>>>>> b393700 (tratamento CORS)
