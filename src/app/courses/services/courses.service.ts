@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CoursesService {
-  private readonly API = 'assets/courses.json'
+  private readonly API = 'http://localhost:8080/api/courses'
 
   constructor(private httpClient:HttpClient){ }
 
@@ -15,7 +15,7 @@ export class CoursesService {
   return this.httpClient.get<Course[]>(this.API)
     .pipe(
       first(),
-      delay(6000),
+      //delay(6000),
       tap(courses => console.log(courses))
     );
   }
