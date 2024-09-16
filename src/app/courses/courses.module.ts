@@ -8,6 +8,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { Observable } from 'rxjs';
 import { Course } from './model/course';
+import { MatIconModule } from '@angular/material/icon';
+import { CategoryPipe } from '../shared/pipes/category.pipe';
+
 
 
 @NgModule({
@@ -15,7 +18,8 @@ import { Course } from './model/course';
   imports: [
     CommonModule,
     CoursesRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule
   ]
 })
 export class CoursesModule { }
@@ -31,7 +35,9 @@ export class CoursesModule { }
     MatCardModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    CommonModule
+    CommonModule,
+    MatIconModule,
+    CategoryPipe
   ],
   templateUrl: './courses/courses.component.html',
   styleUrls: ['./courses/courses.component.scss']

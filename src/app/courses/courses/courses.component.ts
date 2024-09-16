@@ -10,7 +10,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { CategoryPipe } from '../../shared/pipes/category.pipe';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -23,20 +25,25 @@ import { CategoryPipe } from '../../shared/pipes/category.pipe';
     MatProgressSpinnerModule,
     MatButtonModule,
     MatDialogModule,
+    MatIconModule,
     CategoryPipe
   ],
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
+
 export class CoursesComponent implements OnInit {
 
   courses$: Observable<Course[]>;
   displayedColumns: string[] = ['name', 'category'];
 
   constructor(
-    private coursesService: CoursesService,
-    public dialog: MatDialog
+    private coursesService: CoursesService, // Correto, sem necessidade de `courseService`
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
+    // Usando `coursesService` corretamente
     this.courses$ = this.coursesService.list()
       .pipe(
         catchError(error => {
@@ -52,5 +59,9 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  onAdd(): void {
+    this.router.navigate(['new'], { relativeTo: this.route });
+  }
+
+  ngOnInit(): void { }
 }
