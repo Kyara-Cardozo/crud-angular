@@ -35,7 +35,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CoursesComponent implements OnInit {
 
   courses$: Observable<Course[]>;
-  displayedColumns: string[] = ['name', 'category'];
+  displayedColumns: string[] = ['name', 'category', 'actions'];
 
   constructor(
     private coursesService: CoursesService, // Correto, sem necessidade de `courseService`

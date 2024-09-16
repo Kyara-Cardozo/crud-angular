@@ -1,11 +1,52 @@
 table {
+  background-color: white;
   width: 100%;
 }
 
-.loading-spinner{
+mat-header-row,
+mat-row {
+  background-color: white;
+  color: black;
+}
+
+th,
+td {
+  color: black;
+}
+
+mat-header-cell {
+  background-color: #f0f0f0;
+}
+
+.loading-spinner {
   padding: 25px;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgb(0, 0, 0) 0.15;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 600px;
+}
+
+.action-column {
+  flex: 0 0 125px;
+}
+
+.action-column-header {
+  margin: 0 auto;
+}
+
+.custom-icon-button-add {
+  color: #1270fd;
+}
+
+.custom-icon-button-edit{
+  color: #2b8c17;
+}
+
+.custom-icon-button-delete {
+  color: #ff0000;
 }

@@ -46,7 +46,7 @@ export class CoursesComponent implements OnInit {
 
   courses$: Observable<Course[]>; // Usando um Observable para a lista de cursos
 
-  displayedColumns: string[] = ['name', 'category'];
+  displayedColumns: string[] = ['name', 'category', 'actions'];
 
   constructor(private coursesService: CoursesService) {
     // Inicializando o Observable courses$
