@@ -43,10 +43,30 @@ mat-header-cell {
   color: #1270fd;
 }
 
-.custom-icon-button-edit{
+.custom-icon-button-edit {
   color: #2b8c17;
 }
 
 .custom-icon-button-delete {
   color: #ff0000;
+}
+
+mat-card {
+  max-width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.column-flex {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.loading-spinner {
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -13,7 +13,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { CategoryPipe } from '../../shared/pipes/category.pipe';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import { CourseFormComponent } from '../course-form/course-form.component';
+import { CoursesListComponent } from '../courses-list/courses-list.component';
 @Component({
   selector: 'app-courses',
   standalone: true,
@@ -26,12 +27,13 @@ import { ActivatedRoute, Router } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    CategoryPipe
+    CategoryPipe,
+    CourseFormComponent,
+    CoursesListComponent
   ],
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss']
 })
-
 export class CoursesComponent implements OnInit {
 
   courses$: Observable<Course[]>;
@@ -43,14 +45,13 @@ export class CoursesComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    // Usando `coursesService` corretamente
-    this.courses$ = this.coursesService.list()
-      .pipe(
-        catchError(error => {
-          this.onError('Erro ao carregar a lista de cursos');
-          return of([]);
-        })
-      );
+    // Inicializando o observable de cursos
+    this.courses$ = this.coursesService.list().pipe(
+      catchError(error => {
+        this.onError('Erro ao carregar a lista de cursos');
+        return of([]);
+      })
+    );
   }
 
   onError(erroMsg: string): void {
